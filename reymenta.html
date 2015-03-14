@@ -1,0 +1,38 @@
+<html>
+<head>
+  <title>VVVV.js reymenta</title>
+  <link rel="stylesheet" type="text/css" href="../vvvviewer/vvvv.css"/>
+  <script language="JavaScript" src="../lib/jquery/jquery-1.8.2.min.js"></script> 
+  <script language="JavaScript" src="../vvvv.js"></script>
+  <script language="JavaScript">
+    var patch;
+    var mainloop;
+    $(document).ready(function() {
+      // initialize vvvv.js; this loads the rest of the .js files
+      // first argument is the path to the vvvv_js folder
+      // second argument is either 'run', to load only run components, 'view' to load only vvvviewer, or 'full' to load both
+      VVVV.init("../../", 'full', function () {
+        // load the .v4p file and run the mainloop. this paragraph is basically all you need to run a vvvv patch
+        patch = new VVVV.Core.Patch("reymenta.v4p", function() {
+          mainloop = new VVVV.Core.MainLoop(this);
+        });
+      });
+    });
+    $(window).resize(function() {
+            $('#renderer').width = 20;
+        });
+  </script>
+  <style type="text/css">
+body {
+    overflow:hidden;
+}
+</style>
+</head>
+<body>
+
+<div style="margin-top:-9px;margin-left:-9px"> 
+    <canvas id="renderer" width="1000" height="700"></canvas>
+</div>
+
+</body>
+</html>
